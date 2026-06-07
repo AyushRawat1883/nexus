@@ -5,7 +5,7 @@ const TicketSchema = new mongoose.Schema({
     description: { type: String, required: true },
     status: { 
         type: String, 
-        enum: ['Open', 'Assigned', 'In_Progress', 'Resolved'], 
+        enum: ['Open', 'In_Progress', 'Resolved'], 
         default: 'Open' 
     },
     priority: { 
@@ -13,18 +13,18 @@ const TicketSchema = new mongoose.Schema({
         enum: ['Low', 'Medium', 'High'], 
         default: 'Medium' 
     },
-    // Links the ticket to the specific Employee who created it
+    // Links the ticket to the Employee who created it
     creator: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User', 
         required: true 
     },
-    // Links the ticket to the specific IT Technician assigned to resolve it
+    // Links the ticket to the IT Technician assigned to it
     assignedTo: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         default: null
     }
-}, { timestamps: true }); // Automatically handles createdAt and updatedAt timestamps
+}, { timestamps: true }); // Automatically creates createdAt and updatedAt fields
 
 module.exports = mongoose.model('Ticket', TicketSchema);

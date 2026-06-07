@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db.js');
 const authRoutes = require('./routes/authRoutes.js');
+const ticketRoutes = require('./routes/ticketRoutes.js');
 
 // Load environment variables
 dotenv.config();
@@ -17,6 +18,8 @@ app.use(cors());
 app.use(express.json()); // Allows the server to parse JSON payloads
 //route links
 app.use('/api/auth', authRoutes);
+
+app.use('/api/tickets', ticketRoutes);
 
 // Root Test Route
 app.get('/', (req, res) => {
